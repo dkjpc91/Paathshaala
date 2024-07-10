@@ -8,10 +8,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.airbnb.lottie.LottieDrawable
+
 import com.bumptech.glide.Glide
 import com.mithilakshar.maithilipathshala.R
 import com.mithilakshar.maithilipathshala.databinding.ActivityMainBinding
-import kotlin.random.Random
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -29,8 +31,13 @@ class MainActivity : AppCompatActivity() {
         val imageUrl = "https://i.pinimg.com/564x/fa/46/cc/fa46cc82f80aef54ceb4bc7dd95c8775.jpg"
         val imageUrl2 = "https://i.pinimg.com/564x/68/e6/14/68e614a4460bc2c36d24f457338392c7.jpg"
         val animations = getAssetLottieFiles()
-        binding.appbannerlottie.setAnimation(animations.random())
+      //  binding.appbannerlottie.setAnimation(animations.random())
         binding.appbanner.visibility=View.GONE
+
+        binding.appbannerlottie.setAnimationFromUrl("https://lottie.host/ea1b5370-e4c7-4226-9ef7-8d4e6958c244/duEUsEy7LL.json")
+        binding.appbannerlottie.repeatCount = LottieDrawable.INFINITE // Optional: to make the animation loop indefinitely
+        binding.appbannerlottie.playAnimation()
+
         Glide.with(this)
             .load(imageUrl)
             .placeholder(R.drawable.logo) // Optional placeholder
