@@ -12,23 +12,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.airbnb.lottie.LottieDrawable
-
 import com.bumptech.glide.Glide
 import com.mithilakshar.maithilipathshala.R
-import com.mithilakshar.maithilipathshala.databinding.ActivityMainBinding
+import com.mithilakshar.maithilipathshala.databinding.ActivityFavourateBinding
 
+class FavourateActivity : AppCompatActivity() {
 
-class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
-    private lateinit var navController: NavController
+    lateinit var binding: ActivityFavourateBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding=ActivityMainBinding.inflate(layoutInflater)
+        binding=ActivityFavourateBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -39,11 +34,11 @@ class MainActivity : AppCompatActivity() {
         hideSystemUI()
 
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
-        navController = navHostFragment.navController
 
-        val bottomNavigationView = binding.bottomNavigationView
-        bottomNavigationView.setupWithNavController(navController)
+
+
+
+
 
 
 
@@ -55,18 +50,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getRawLottieFiles(): List<String> {
-        val fields = R.raw::class.java.fields
-        return fields.map { it.name }.filter { it.startsWith("lottie") } // Adjust the filter as needed
-    }
-
-    private fun getAssetLottieFiles(): List<String> {
-        val assetManager = assets
-        // List all files in the assets directory
-        val files = assetManager.list("")?.filter { it.endsWith(".json") } ?: emptyList()
-        // Exclude specific files (e.g., "freeform_resolutions.json")
-        return files.filterNot { it == "freeform_resolutions.json" }
-    }
 
     private fun hideSystemUI() {
         // Enables regular immersive mode (without sticky)
